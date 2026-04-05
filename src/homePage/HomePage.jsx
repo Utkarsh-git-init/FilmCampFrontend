@@ -32,6 +32,9 @@ function HomePage() {
     return(
         <>
             <h1>Home Page</h1>
+            {!authenticated && <div>
+                <h2>PLEASE WAIT WHILE BACKEND LOADS</h2>
+            </div>}
             {authenticated && <div className={"loginContainer"}>
                 <h2>You are authenticated</h2>
                 <button onClick={handleLogout}>Logout</button>
