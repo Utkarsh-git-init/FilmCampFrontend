@@ -1,0 +1,8 @@
+.trendingSectionHomepageDiv{
+    display: flex;
+    flex-direction: column;
+}
+.trendingSectionHomepageDiv label{
+    text-align: left;
+    margin-left: 80px;
+}

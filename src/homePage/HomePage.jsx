@@ -1,13 +1,19 @@
 import {useEffect, useState} from "react";
+import TrendingSection from "./TrendingSection.jsx";
+import './homePage.css'
 
 function HomePage() {
     const [authenticated, setAuthenticated] = useState(false)
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
     useEffect(() => {
-        fetch(`${baseUrl}/isauthenticated`,
-            {credentials: "include"})
+        fetch(`${baseUrl}/user/isauthenticated`,
+            {
+                headers:{
+                    'Authorization':localStorage.getItem('token')
+                }
+            }
+            )
         .then(res => {
-            console.log("Response status: ", res.status, " headers: ", res.headers, " body: ", res.body, "")
             if(res.status === 202) {
                 console.log("User is authenticated")
                 setAuthenticated(true)
@@ -19,25 +25,24 @@ function HomePage() {
         })
     },[])
     function handleLogout() {
-        fetch(`${baseUrl}/logout`, {
-            method: 'POST',
-            credentials: "include"
-        }).then(res => {
-            if(res.status === 200) {
-                console.log("Logout successful")
-                window.location.href = '/login'
-            }
-        })
+        localStorage.removeItem("token")
+        window.location.href = '/'
     }
     return(
         <>
-            <h1>Home Page</h1>
+            <h1>FILMCAMP</h1>
             {!authenticated && <div>
                 <h2>PLEASE WAIT WHILE BACKEND LOADS</h2>
             </div>}
             {authenticated && <div className={"loginContainer"}>
-                <h2>You are authenticated</h2>
-                <button onClick={handleLogout}>Logout</button>
+                <div>
+                    <div className="trendingSectionHomepageDiv">
+                        <label>Trending Today</label>
+                        <TrendingSection/>
+                    </div>
+                    <button onClick={handleLogout}>Logout</button>
+                </div>
+
             </div>
             }
         </>

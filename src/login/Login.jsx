@@ -1,6 +1,6 @@
 import {useState} from "react";
 import './login.css'
-import {Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 
 function Login() {
     const [username, setUsername] = useState('')
@@ -10,24 +10,33 @@ function Login() {
     const handlePasswordChange = (e) => {setPassword(e.target.value)}
     function handleLogin() {
         const baseUrl=import.meta.env.VITE_API_BASE_URL
-        fetch(`${baseUrl}/login`,{
+        fetch(`${baseUrl}/user/login`,{
             method: 'POST',
             headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+                "Content-Type": "application/json"
             },
-            body: new URLSearchParams({
+            body: JSON.stringify({
                 username: username,
                 password: password
             }),
-            credentials: "include"   // 🔥 VERY IMPORTANT
         }).then(res => {
             if(res.status === 200) {
-                console.log("Login successful")
-                window.location.href = '/'
+                return res.text()
             } else if(res.status === 401) {
                 console.log("Login failed")
                 setError(true)
             }
+        }).then(
+            data => {
+                if(data){
+                    console.log(data)
+                    const token="Bearer "+data;
+                    localStorage.setItem("token", token)
+                    window.location.href = '/'
+                }
+            }
+        ).catch(err => {
+            console.log(err)
         })
     }
     return(
@@ -41,7 +50,6 @@ function Login() {
                 <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
                 <button onClick={handleLogin}>Login</button>
             </div>
-
         </>
     )
 }
