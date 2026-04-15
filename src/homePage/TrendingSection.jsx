@@ -29,19 +29,20 @@ function TrendingSection(){
     }
     return(
         <>
-            <div className="trendingSection-Outer-Container">
-                <button onClick={handlePrevButton}>{"<"}</button>
                 <div  className={"trendingSectionContainer"}>
-                    {
+                    {movies.length > 0 ?
                         movies.slice(page,page+4).map(
                             movie => <div key={movie.id}>
                                 <MovieCard img={movie.poster_path}/>
                             </div>
                         )
+                        :Array(4).fill(0).map((_,i)=><div key={i} className={"emptyPoster"}></div>)
                     }
                 </div>
-                <button onClick={handleNextButton}>{">"}</button>
-            </div>
+                <div className={"trendingSectionPrevNextButtons"}>
+                    <button onClick={handlePrevButton}>{"<"}</button>
+                    <button onClick={handleNextButton}>{">"}</button>
+                </div>
 
         </>
     )

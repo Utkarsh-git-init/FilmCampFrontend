@@ -1,10 +1,14 @@
 import './movieCard.css'
 
-function MovieCard(props) {
+function MovieCard({img,title}) {
     return (
         <>
             <div className="movieCard">
-                <img src={props.img} alt={props.title} />
+                <img src={img}
+                     alt={title}
+                     loading={"lazy"}
+                     onLoad={(e)=>e.target.classList.add("loaded")}
+                />
             </div>
         </>
     )

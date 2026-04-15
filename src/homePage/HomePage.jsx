@@ -30,20 +30,24 @@ function HomePage() {
     }
     return(
         <>
-            <h1>FILMCAMP</h1>
             {!authenticated && <div>
+                <h1>FILMCAMP</h1>
                 <h2>PLEASE WAIT WHILE BACKEND LOADS</h2>
             </div>}
-            {authenticated && <div className={"loginContainer"}>
-                <div>
-                    <div className="trendingSectionHomepageDiv">
-                        <label>Trending Today</label>
-                        <TrendingSection/>
+            {authenticated &&
+                <div className={"homepageContainer"}>
+                    <div>
+                        <h1>FILMCAMP</h1>
+                        <div className="trendingSectionHomepageDiv">
+                            <label>Trending Today</label>
+                            <TrendingSection/>
+                        </div>
                     </div>
-                    <button onClick={handleLogout}>Logout</button>
-                </div>
+                    <div>
+                        <button onClick={handleLogout}>Logout</button>
+                    </div>
 
-            </div>
+                </div>
             }
         </>
     )
