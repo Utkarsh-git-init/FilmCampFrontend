@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import MovieCard from "./MovieCard.jsx";
 import './trendingSection.css'
+import {Link} from "react-router-dom";
 
 function TrendingSection(){
     const [movies, setMovies] =useState([])
@@ -33,7 +34,9 @@ function TrendingSection(){
                     {movies.length > 0 ?
                         movies.slice(page,page+4).map(
                             movie => <div key={movie.id}>
-                                <MovieCard img={movie.poster_path}/>
+                                <Link to={`/movie/${movie.id}`}>
+                                    <MovieCard img={movie.poster_path}/>
+                                </Link>
                             </div>
                         )
                         :Array(4).fill(0).map((_,i)=><div key={i} className={"emptyPoster"}></div>)

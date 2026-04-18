@@ -26,6 +26,7 @@ function Login() {
                 console.log("Login failed")
                 setError(true)
             }
+            throw new Error("Login failed with status code: "+res.status)
         }).then(
             data => {
                 if(data){
