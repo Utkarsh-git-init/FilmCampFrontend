@@ -18,7 +18,7 @@
 }
 .movieCard:hover {
     cursor: pointer;
-    border:white solid 1px;
+    outline:white solid 1px;
 }
 .movieCard img.loaded {
     opacity: 1; /* Fade in smoothly */
