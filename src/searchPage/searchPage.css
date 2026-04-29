@@ -1,0 +1,41 @@
+
+.movieCardInSearchPage{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+.movieCardInSearchPage img{
+    width: 100%;
+    border-radius: 10px;;
+    object-fit: cover;
+}
+.movieCardInSearchPage img:hover{
+    cursor: pointer;
+    outline:white solid 1px;
+}
+
+.movieCardInSearchPage .posterLink{
+    width: 20%;
+    flex-shrink: 0;
+}
+.movieCardInSearchPage a{
+    text-decoration: none;
+    color: white;
+}
+.movieCardInSearchPage p{
+    text-align: left;
+    margin-left: 1rem;
+}
+.movieCardInSearchPage .details{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    min-width: 0;
+}
+.movieCardInSearchPage .details p:last-child{
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Show exactly 3 lines then ... */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}

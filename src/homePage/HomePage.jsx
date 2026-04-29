@@ -1,10 +1,12 @@
 import {useEffect, useState} from "react";
 import TrendingSection from "./TrendingSection.jsx";
 import './homePage.css'
+import {useNavigate} from "react-router-dom";
 
 function HomePage() {
     const [authenticated, setAuthenticated] = useState(false)
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
+    const navigate=useNavigate();
     useEffect(() => {
         fetch(`${baseUrl}/user/isauthenticated`,
             {
@@ -20,24 +22,22 @@ function HomePage() {
             } else {
                 setAuthenticated(false)
                 console.log("User is not authenticated")
-                window.location.href = '/login'
+                navigate("/login")
             }
         })
     },[])
     function handleLogout() {
         localStorage.removeItem("token")
-        window.location.href = '/'
+        navigate("/")
     }
     return(
         <>
             {!authenticated && <div>
-                <h1>FILMCAMP</h1>
                 <h2>PLEASE WAIT WHILE BACKEND LOADS</h2>
             </div>}
             {authenticated &&
                 <div className={"homepageContainer"}>
                     <div>
-                        <h1>FILMCAMP</h1>
                         <div className="trendingSectionHomepageDiv">
                             <label>Trending Today</label>
                             <TrendingSection/>

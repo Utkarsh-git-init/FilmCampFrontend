@@ -1,9 +1,12 @@
+.movieCardContainer{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(2rem, 20vw, 14.5rem), 1fr));
+    padding: 0.3em;
+}
 .movieCard{
-    width: 95%;
+    width: 100%;
     aspect-ratio: 2/3;
     border-radius: 10px;
-    margin: 5px;
-    padding: 5px;
     background: #1f2028; /* This IS your emptyPoster background */
     overflow: hidden;
 }
