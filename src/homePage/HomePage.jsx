@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
-import TrendingSection from "./TrendingSection.jsx";
+import TrendingSection from "./trending/TrendingSection.jsx";
 import './homePage.css'
 import {useNavigate} from "react-router-dom";
+import TopRated from "./TopRated/TopRated.jsx";
 
 function HomePage() {
     const [authenticated, setAuthenticated] = useState(false)
@@ -39,8 +40,10 @@ function HomePage() {
                 <div className={"homepageContainer"}>
                     <div>
                         <div className="trendingSectionHomepageDiv">
-                            <label>Trending Today</label>
-                            <TrendingSection/>
+                            <TrendingSection sectionName={"trending"}/>
+                        </div>
+                        <div>
+                            <TopRated/>
                         </div>
                     </div>
                     <div>

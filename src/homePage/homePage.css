@@ -1,15 +1,13 @@
 .homepageContainer{
     display: flex;
     flex-direction: column;
-    height: 100svh;
+    height: 90vh;
     justify-content: space-between;
 }
 
 .trendingSectionHomepageDiv{
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
-}
-.trendingSectionHomepageDiv label{
-    text-align: left;
 }

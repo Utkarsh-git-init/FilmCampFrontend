@@ -49,3 +49,20 @@
     font-size: 0.8em;
     font-family: 'Roboto', sans-serif;
 }
+
+@media (max-width: 1024px) {
+    .detailsAndPoster .details{
+        margin-left: 2%;
+        flex-wrap: wrap;
+    }
+    .detailsAndPoster .details .titleAndReleaseDate{
+        gap: 0.5em;
+    }
+    .detailsAndPoster .details .titleAndReleaseDate h2{
+        font-size: 1.1em;
+    }
+    .detailsAndPoster .details #tagline{
+        font-size: 1em;
+    }
+    .detailsAndPoster .details #overview{}
+}

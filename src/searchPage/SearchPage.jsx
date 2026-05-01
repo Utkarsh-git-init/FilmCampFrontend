@@ -1,6 +1,6 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import MovieCard from "../homePage/MovieCard.jsx";
+import MovieCard from "../homePage/movieCard/MovieCard.jsx";
 import './searchPage.css'
 
 function SearchPage() {

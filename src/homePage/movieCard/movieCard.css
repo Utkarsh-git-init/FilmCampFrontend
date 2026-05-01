@@ -26,3 +26,10 @@
 .movieCard img.loaded {
     opacity: 1; /* Fade in smoothly */
 }
+@media (min-width: 1024px) {
+    .movieCardContainer{
+        grid-template-columns: repeat(auto-fill, minmax(clamp(2rem, 20vw, 11rem), 1fr));
+        padding: 2em;
+    }
+
+}
