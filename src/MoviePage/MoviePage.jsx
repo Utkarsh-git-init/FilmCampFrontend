@@ -1,6 +1,7 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import MoviePageUpper from "./MoviePageUpper.jsx";
+import MoviePageMiddle from "./MoviePageMiddle/MoviePageMiddle.jsx";
 
 function MoviePage(){
     const {id}=useParams();
@@ -18,7 +19,11 @@ function MoviePage(){
     },[]);
     return (
         <>
-            <MoviePageUpper movie={movie}/>
+            <div>
+                <MoviePageUpper movie={movie}/>
+                <MoviePageMiddle movie={movie}/>
+            </div>
+
         </>
     )
 }
