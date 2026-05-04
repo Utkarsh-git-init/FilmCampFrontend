@@ -4,10 +4,3 @@
     height: 90vh;
     justify-content: space-between;
 }
-
-.trendingSectionHomepageDiv{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-}

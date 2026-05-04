@@ -1,0 +1,69 @@
+.movie-cards-list-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.5em;
+    margin: 1em;
+}
+
+.movie-cards-list-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+.prev-next-buttons{
+    display: flex;
+    width: 20%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.prev-next-buttons button{
+    width: 5em;
+    height: 100%;
+    border:none;
+    background: none;
+    font-size: 20px;
+}
+.prev-next-buttons button:hover{
+    cursor: pointer;
+    color: #00ffcc;
+}
+.pageIndicatorContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 5%;
+    align-items: center;
+    width: 90%;
+}
+
+.pageIndicator{
+    width: 5%;
+    height: 20%;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+.pageIndicator.active{
+    background-color: #00ffcc;
+    border-color: #00ffcc;
+    box-shadow:
+            0 0 10px #00ffcc,
+            0 0 20px rgba(0, 255, 204, 0.4);
+
+    transform: scale(1.15);
+}
+@media (max-width: 1024px) {
+    .prev-next-buttons{
+        width: 30%;
+    }
+    .pageIndicator{
+        width: 3%;
+        height: 9%;
+    }
+}
+@media (max-width: 768px) {
+    .prev-next-buttons{
+        width: 40%;
+    }
+}

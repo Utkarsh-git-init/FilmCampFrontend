@@ -3,6 +3,7 @@ import TrendingSection from "./trending/TrendingSection.jsx";
 import './homePage.css'
 import {useNavigate} from "react-router-dom";
 import TopRated from "./TopRated/TopRated.jsx";
+import MovieCardsList from "../movieCardsList/MovieCardsList.jsx";
 
 function HomePage() {
     const [authenticated, setAuthenticated] = useState(false)
@@ -14,8 +15,7 @@ function HomePage() {
                 headers:{
                     'Authorization':localStorage.getItem('token')
                 }
-            }
-            )
+            })
         .then(res => {
             if(res.status === 202) {
                 console.log("User is authenticated")
@@ -39,12 +39,8 @@ function HomePage() {
             {authenticated &&
                 <div className={"homepageContainer"}>
                     <div>
-                        <div className="trendingSectionHomepageDiv">
-                            <TrendingSection sectionName={"trending"}/>
-                        </div>
-                        <div>
-                            <TopRated/>
-                        </div>
+                        <TrendingSection />
+                        <TopRated/>
                     </div>
                     <div>
                         <button onClick={handleLogout}>Logout</button>
