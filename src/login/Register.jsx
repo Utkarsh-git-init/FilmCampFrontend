@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 function Register() {
     const [username, setUsername] = useState('')
@@ -8,12 +9,15 @@ function Register() {
     const handleUsernameChange = (e) => {setUsername(e.target.value)}
     const handlePasswordChange = (e) => {setPassword(e.target.value)}
     function handleRegister() {
-        if(username.length<8||password.length<8){
+        if(username.length<4){
             setError(true);
-            setErrorMessage("Username and password cannot be less than 8 characters")
-        }else if(!(/^[a-zA-Z0-9@#]*$/.test(username)&&/^[a-zA-Z0-9@#]*$/.test(password))){
+            setErrorMessage("Username cannot be less than 4 characters")
+        }else if(password.length<8){
+            setError(true);
+            setErrorMessage("Password cannot be less than 8 characters")
+        }else if(!(/^[a-zA-Z0-9_@]*$/.test(username)&&/^[a-zA-Z0-9_@]*$/.test(password))){
             setError(true)
-            setErrorMessage("Username and password cannot special characters")
+            setErrorMessage("Username and password cannot contain special characters except underscore and @")
         }else{
             setError(false);
             const baseUrl = import.meta.env.VITE_API_BASE_URL
@@ -27,25 +31,24 @@ function Register() {
                     password:password
                 })
             }).then(res => {
-                if(res.status === 200){
-                    window.location.href = '/login'
-                }else if(res.status === 409){
-                    setError(true);
-                    setErrorMessage("User with this username already exists")
+                    if (res.status === 200) {
+                        window.location.href = '/login'
+                    } else if (res.status === 409) {
+                        setError(true);
+                        setErrorMessage("User with this username already exists")
+                    } else {
+                        setError(true);
+                        setErrorMessage("Register failed. Please try again")
+                    }
                 }
-                else{
-                    setError(true);
-                    setErrorMessage("Register failed. Please try again")
-                }
-
-            }
-
             )
         }
     }
     return(
         <>
             <h1>Register</h1>
+            <p>Already have an account?</p>
+            <Link to={"/login"}>Login</Link>
             {error && <p>{errorMessage}</p>}
             <div className={"loginContainer"}>
                 <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange}/>

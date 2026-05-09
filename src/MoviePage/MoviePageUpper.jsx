@@ -11,7 +11,7 @@ function MoviePageUpper({movie}){
     return (
         <>
             <div className={"moviePageUpper"}>
-                <img id={"backdrop"} src={movie.backdrop_path}/>
+                {movie.backdrop_path&&<img id={"backdrop"} src={movie.backdrop_path}/>}
                 <div className={"detailsAndPoster"}>
                     <img src={movie.poster_path}/>
                     <div className={"details"}>

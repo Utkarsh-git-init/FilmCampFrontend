@@ -30,6 +30,7 @@ function UserMovieInteraction({movie}) {
         setWatched(!Watched)
         fetch(baseUrl+"/interactions/movie/update",{
             method:"POST",
+            keepalive:true,
             headers:{
                 'Authorization':localStorage.getItem('token'),
                 'Accept': 'application/json',
@@ -50,6 +51,7 @@ function UserMovieInteraction({movie}) {
         setLiked(!liked)
         fetch(baseUrl+"/interactions/movie/update",{
             method:"POST",
+            keepalive:true,
             headers:{
                 'Authorization':localStorage.getItem('token'),
                 'Accept': 'application/json',
@@ -70,6 +72,7 @@ function UserMovieInteraction({movie}) {
         setInWatchlist(!inWatchlist)
         fetch(baseUrl+"/interactions/movie/update",{
             method:"POST",
+            keepalive:true,
             headers:{
                 'Authorization':localStorage.getItem('token'),
                 'Accept': 'application/json',

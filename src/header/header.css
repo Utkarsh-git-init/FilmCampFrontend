@@ -3,23 +3,77 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 0.5em;
 }
 .headerRight{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    width: 50%;
-}
-.headerRight input{
-    width: 50%;
-    padding: 0.3em 0.3em 0.3em 1em;
-    font-size: 1.2em;
-    border: none;
-    border-radius: 1em;
+    align-items: center;
+    width: 30%;
+    gap: 0.2em;
+    margin-left: 1em;
 }
 .headerLeft{
     text-decoration: none;
 }
 .headerLeft #titleLogo{
+    font-size: 2rem;
     font-family: Dialog, serif;
+}
+
+.search-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+}
+.search-input-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5em;
+}
+.search-container input{
+    width: 50%;
+    padding: 0.1em 0.5em;
+    border-radius: 2rem;
+    font-size: 1rem;
+    transition: 0.5s ease-in-out;
+}
+.search-container input:focus{
+    width: 100%;
+    outline: none;
+}
+.search-icon{
+    cursor: pointer;
+}
+.search-container.open .search-icon{
+    display: none;
+}
+.search-container.close .search-input-wrapper{
+    transition: 0.5s ease-in-out;
+    display: none;
+}
+
+.close-icon{
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.close-icon:hover{
+    transform: rotate(90deg);
+}
+
+.profile-icon-container{
+    width: 33px;
+    height: 33px;
+}
+@media (max-width: 768px) {
+    .headerRight{
+        width: 100%;
+    }
+    .headerLeft #titleLogo{
+        font-size: 1.8rem;
+    }
 }

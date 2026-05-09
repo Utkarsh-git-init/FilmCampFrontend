@@ -6,7 +6,7 @@ import UserMovieInteraction from "./UserMovieInteraction/UserMovieInteraction.js
 
 function MoviePage(){
     const {id}=useParams();
-    const [movie,setMovie] = useState({});
+    const [movie,setMovie] = useState(null);
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
     useEffect(()=>{
         fetch(baseUrl+"/movie/" + id, {
@@ -18,6 +18,7 @@ function MoviePage(){
         }).then(res => res.json())
             .then(setMovie)
     },[]);
+    if(!movie) return <p>Loading...</p>
     return (
         <>
             <div>

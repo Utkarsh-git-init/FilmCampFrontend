@@ -1,22 +1,27 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import MovieCard from "../movieCard/MovieCard.jsx";
 import './searchPage.css'
 
 function SearchPage() {
     const {query}=useParams();
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
     const [movies, setMovies] = useState([]);
+    const [response, setResponse] = useState(null);
+    const [page, setPage] = useState(1);
+    const [pageInput, setPageInput] = useState("1");
     useEffect(() => {
-        fetch(baseUrl+"/movie/search/"+query, {
+        fetch(baseUrl+"/movie/search/"+query+"/"+page, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": localStorage.getItem("token")
             }
         }).then(res => res.json())
-            .then(setMovies)
-    }, [baseUrl, query]);
+            .then(data=>{
+                setResponse(data);
+                setMovies(data.results);
+            })
+    }, [baseUrl, page, query]);
     function handleReleaseDate(release_date){
         if (!release_date) return "Release date unknown";
         return new Date(release_date)
@@ -25,6 +30,22 @@ function SearchPage() {
                 {year:'numeric',
                     month:'long',
                     day:'numeric'})
+    }
+    function handlePageChange(e) {
+        if(e.key !== 'Enter') return;
+        const value = Number(e.target.value);
+        setPage(
+            Math.min(
+                Math.max(value, 1),
+                response.total_pages
+            )
+        );
+        setPageInput("" +
+            Math.min(
+                Math.max(value, 1),
+                response.total_pages
+            )
+        )
     }
     return (
         <>
@@ -46,6 +67,23 @@ function SearchPage() {
                             </div>)
                         :<p>Loading</p>
                 }
+                <div>
+                    {
+                        response &&
+                        <div className={"pagination"}>
+                            <input type={"number"}
+                                   min={1}
+                                   max={response.total_pages}
+                                   value={pageInput}
+                                   onKeyDown={handlePageChange}
+                                   onChange={(e)=>setPageInput(e.target.value)}
+                            />
+                            <p>Total Pages: {response.total_pages}</p>
+                            <p>Total Results: {response.total_results}</p>
+                        </div>
+                    }
+
+                </div>
             </div>
         </>
     )

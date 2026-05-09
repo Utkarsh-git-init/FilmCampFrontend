@@ -27,9 +27,10 @@
 .fullCastAndCrewButton{
     border: none;
     background: none;
-    color: white;
+    color: deepskyblue;
+    font-size: 0.8rem;
 }
 .fullCastAndCrewButton:hover{
     cursor: pointer;
-    color: #00ffcc;
+    color: dodgerblue;
 }
