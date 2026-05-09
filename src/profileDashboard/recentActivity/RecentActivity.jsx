@@ -17,7 +17,9 @@ function RecentActivity() {
     }, []);
     return(
         <div className={"recent-activity-container"}>
-            <label className={"recent-activity-title"}>Recent Activity</label>
+            <div className={"recent-activity-header"}>
+                <label className={"recent-activity-title"}>Recent Activity</label>
+            </div>
             <div className={"recent-activity-movie-card-section"}>
                 {recentActivity.length === 0 ?
                     Array(4).fill(0).map((_, index) => <MovieCard key={index}/>)
@@ -27,6 +29,9 @@ function RecentActivity() {
                         </Link>
                     )
                 }
+                {recentActivity.length === 1 && Array(3).fill(0).map((_, index) => <MovieCard key={index}/>)}
+                {recentActivity.length === 2 && Array(2).fill(0).map((_, index) => <MovieCard key={index}/>)}
+                {recentActivity.length === 3 && Array(1).fill(0).map((_, index) => <MovieCard key={index}/>)}
             </div>
 
         </div>
