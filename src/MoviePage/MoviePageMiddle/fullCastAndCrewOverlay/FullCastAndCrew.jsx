@@ -1,4 +1,5 @@
 import './fullCNC.css'
+import noImage from "/src/assets/no-image-available.jpg";
 
 function FullCastAndCrew({cast, crew, closeOverlay}) {
     return (
@@ -14,7 +15,7 @@ function FullCastAndCrew({cast, crew, closeOverlay}) {
                             <label>Cast</label>
                             {cast.map(castMember =>
                                 <div key={castMember.id} className={"overlay-cast-n-crew-member"}>
-                                    <img src={castMember.profile_path|| "/src/assets/no-image-available.jpg"} alt={castMember.name}/> {/*if profile path is null*/}
+                                    <img src={castMember.profile_path|| noImage} alt={castMember.name}/> {/*if profile path is null*/}
                                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                                         <p>{castMember.name}</p>
                                         <p>{castMember.character}</p>
@@ -26,7 +27,7 @@ function FullCastAndCrew({cast, crew, closeOverlay}) {
                             <label>Crew</label>
                             {crew.map(crewMember =>
                                 <div key={crewMember.id} className={"overlay-cast-n-crew-member"}>
-                                    <img src={crewMember.profile_path || "/src/assets/no-image-available.jpg"} alt={crewMember.name} />
+                                    <img src={crewMember.profile_path || noImage} alt={crewMember.name} />
                                     <div style={{display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
                                         <p>{crewMember.name}</p>
                                         <p>{crewMember.known_for_department}</p>

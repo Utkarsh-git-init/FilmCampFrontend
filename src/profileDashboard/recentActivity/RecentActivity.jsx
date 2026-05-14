@@ -1,13 +1,15 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import './recentActivity.css'
 import MovieCard from "../../movieCard/MovieCard.jsx";
 import {Link} from "react-router-dom";
+import {UserContext} from "../../layout/UserContext.jsx";
 
 function RecentActivity() {
     const [recentActivity, setRecentActivity] = useState([])
+    const user=useContext(UserContext);
     useEffect(() => {
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
-        fetch(baseUrl+"/interactions/recent_activity",{
+        fetch(baseUrl+"/u/"+user.userId+"/recent_activity",{
             headers:{
                 'Authorization':localStorage.getItem('token')
             }
@@ -20,6 +22,7 @@ function RecentActivity() {
             <div className={"recent-activity-header"}>
                 <label className={"recent-activity-title"}>Recent Activity</label>
             </div>
+            <hr/>
             <div className={"recent-activity-movie-card-section"}>
                 {recentActivity.length === 0 ?
                     Array(4).fill(0).map((_, index) => <MovieCard key={index}/>)

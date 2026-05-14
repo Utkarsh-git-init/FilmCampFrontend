@@ -1,0 +1,11 @@
+.watchlist-container{
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+@media (max-width: 768px) {
+    .watchlist-container{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 0.5em;
+    }
+}

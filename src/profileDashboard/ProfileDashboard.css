@@ -5,3 +5,21 @@
     flex-direction: column;
     justify-content: space-between;
 }
+.dashboard-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 2em;
+    padding: 0.5em 0.5em 0.5em 1em;
+    border: 1px solid #706c6c;
+    border-radius: 0.5em;
+}
+.dashboard-header button{
+    border: none;
+    background: none;
+}
+.dashboard-header button:hover{
+    cursor: pointer;
+    color: deepskyblue;
+}

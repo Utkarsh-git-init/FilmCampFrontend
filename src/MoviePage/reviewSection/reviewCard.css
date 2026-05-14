@@ -1,0 +1,59 @@
+
+.reviews-display-section{
+    width: 100%;
+}
+.review{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+.review p{
+    font-size: 0.85rem;
+}
+
+.content-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.review-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+.reply-box{
+    width: 100%;
+    box-sizing: border-box;
+}
+.replies-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.45rem;
+}
+.review-body{
+    padding-left: 1.45rem;  /* Space between line and reply content */
+    width: 100%;
+    box-sizing: border-box;
+}
+.review-body-with-replies{
+    width: calc(100% - 0.45rem);
+    border-left: 2px solid var(--border);
+    margin-left: 0.45rem;/* Indent the replies */
+    padding-left: 1rem;  /* Space between line and reply content */
+    box-sizing: border-box;
+}

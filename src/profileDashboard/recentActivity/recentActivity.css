@@ -1,3 +1,7 @@
+.recent-activity-container{
+    margin-top: 2em;
+}
+
 .recent-activity-header{
     display: flex;
     width: 100%;

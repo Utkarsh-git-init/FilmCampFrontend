@@ -20,7 +20,7 @@ function App() {
                 <Route path='/' element={<HomePage/>}/>
                 <Route path='/movie/:id' element={<MoviePage/>}/>
                 <Route path='/search/:query' element={<SearchPage/>}/>
-                <Route path="/profile" element={<ProfileDashboard/>}/>
+                <Route path="/user/:username" element={<ProfileDashboard/>}/>
             </Route>
         </Routes>
     </>

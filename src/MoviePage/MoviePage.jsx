@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import MoviePageUpper from "./MoviePageUpper.jsx";
 import MoviePageMiddle from "./MoviePageMiddle/MoviePageMiddle.jsx";
 import UserMovieInteraction from "./UserMovieInteraction/UserMovieInteraction.jsx";
+import ReviewSection from "./reviewSection/ReviewSection.jsx";
 
 function MoviePage(){
     const {id}=useParams();
@@ -25,6 +26,7 @@ function MoviePage(){
                 <MoviePageUpper movie={movie}/>
                 <UserMovieInteraction movie={movie}/>
                 <MoviePageMiddle movie={movie}/>
+                <ReviewSection movie={movie}/>
             </div>
 
         </>
