@@ -1,15 +1,13 @@
-import {useContext, useEffect, useState} from "react";
-import {UserContext} from "../../layout/UserContext.jsx";
+import {useEffect, useState} from "react";
 import MovieCard from "../../movieCard/MovieCard.jsx";
 import './watchlist.css'
 import {Link} from "react-router-dom";
 
-function Liked(){
-    const user=useContext(UserContext);
-    const [liked, setLiked] = useState([])
+function Liked({username}){
+    const [liked, setLiked] = useState(null)
     useEffect(() => {
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
-        fetch(baseUrl+"/u/"+user.userId+"/liked",{
+        fetch(baseUrl+"/u/"+username+"/liked",{
             headers:{
                 'Authorization':localStorage.getItem('token')
             }
@@ -18,7 +16,15 @@ function Liked(){
             .then(data => {
                 setLiked(data)
             })
-    }, [user.userId]);
+    }, [username]);
+    if (liked === null)
+        return (
+            <>Loading...</>
+        )
+    else if (liked.length === 0)
+        return (
+            <p>No movies liked yet</p>
+        )
     return(
         <>
             <div className={"watchlist-container"}>

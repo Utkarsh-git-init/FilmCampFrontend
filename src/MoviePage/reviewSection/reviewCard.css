@@ -33,6 +33,9 @@
     gap: 0.5rem;
     width: 100%;
 }
+.review-header a{
+    text-decoration: none;
+}
 .reply-box{
     width: 100%;
     box-sizing: border-box;

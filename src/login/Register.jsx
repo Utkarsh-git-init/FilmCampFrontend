@@ -52,10 +52,9 @@ function Register() {
             {error && <p>{errorMessage}</p>}
             <div className={"loginContainer"}>
                 <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange}/>
-                <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
+                <input type="text" placeholder="Password" value={password} onChange={handlePasswordChange}/>
                 <button onClick={handleRegister}>Register</button>
             </div>
-
         </>
     )
 }

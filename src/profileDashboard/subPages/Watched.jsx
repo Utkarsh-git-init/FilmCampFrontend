@@ -1,15 +1,13 @@
-import {useContext, useEffect, useState} from "react";
-import {UserContext} from "../../layout/UserContext.jsx";
+import {useEffect, useState} from "react";
 import MovieCard from "../../movieCard/MovieCard.jsx";
 import './watchlist.css'
 import {Link} from "react-router-dom";
 
-function Watched(){
-    const user=useContext(UserContext);
-    const [watched, setWatched] = useState([])
+function Watched({username}){
+    const [watched, setWatched] = useState(null)
     useEffect(() => {
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
-        fetch(baseUrl+"/u/"+user.userId+"/watched",{
+        fetch(baseUrl+"/u/"+username+"/watched",{
             headers:{
                 'Authorization':localStorage.getItem('token')
             }
@@ -18,7 +16,15 @@ function Watched(){
             .then(data => {
                 setWatched(data)
             })
-    }, [user.userId]);
+    }, [username]);
+    if (watched === null)
+        return (
+            <>Loading...</>
+        )
+    else if (watched.length === 0)
+        return (
+            <p>No movies watched yet</p>
+        )
     return(
         <>
             <div className={"watchlist-container"}>

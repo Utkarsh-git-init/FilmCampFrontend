@@ -2,6 +2,7 @@ import {IoPersonOutline} from "react-icons/io5";
 import './reviewCard.css'
 import {useContext, useEffect, useRef, useState} from "react";
 import {UserContext} from "../../layout/UserContext.jsx";
+import {Link} from "react-router-dom";
 
 function ReviewCard({review}) {
     const [replying, setReplying] = useState(false)
@@ -51,8 +52,12 @@ function ReviewCard({review}) {
     return (
         <div className={"review"}>
             <div className={"review-header"}>
-                <IoPersonOutline/>
-                <p>{review.username}</p>
+                <Link to={"/user/"+review.username}>
+                    <IoPersonOutline/>
+                </Link>
+                <Link to={"/user/"+review.username}>
+                    <p>{review.username}</p>
+                </Link>
                 <p>{handleDateTime(review.created_at)}</p>
             </div>
             <div className={"review-body"+(replies.length!==0?"-with-replies":"")}>

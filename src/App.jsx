@@ -10,21 +10,20 @@ import SearchPage from "./searchPage/SearchPage.jsx";
 import ProfileDashboard from "./profileDashboard/ProfileDashboard.jsx";
 
 function App() {
-
-  return (
-    <>
-        <Routes>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>
-            <Route element={<MainLayout/>}>
-                <Route path='/' element={<HomePage/>}/>
-                <Route path='/movie/:id' element={<MoviePage/>}/>
-                <Route path='/search/:query' element={<SearchPage/>}/>
-                <Route path="/user/:username" element={<ProfileDashboard/>}/>
-            </Route>
-        </Routes>
-    </>
-  )
+    return (
+        <>
+            <Routes>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/register' element={<Register/>}/>
+                <Route element={<MainLayout/>}>
+                    <Route path='/' element={<HomePage/>}/>
+                    <Route path='/movie/:id' element={<MoviePage/>}/>
+                    <Route path='/search/:query' element={<SearchPage/>}/>
+                    <Route path="/user/:username" element={<ProfileDashboard/>}/>
+                </Route>
+            </Routes>
+        </>
+    )
 }
 
 export default App

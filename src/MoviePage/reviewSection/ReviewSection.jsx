@@ -45,6 +45,8 @@ function ReviewSection({movie}){
     },[text])
 
     function handleReviewPost(){
+        if(text==="")
+            return;
         fetch(baseUrl+"/movie/add_review",{
             method:"POST",
             headers:{

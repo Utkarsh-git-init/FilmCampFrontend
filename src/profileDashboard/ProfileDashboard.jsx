@@ -1,5 +1,5 @@
 import { IoPersonOutline } from "react-icons/io5";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import './ProfileDashboard.css'
 import {UserContext} from "../layout/UserContext.jsx";
 import {useContext, useState} from "react";
@@ -10,7 +10,8 @@ import Watched from "./subPages/Watched.jsx";
 
 function ProfileDashboard() {
     const navigate=useNavigate();
-    const user=useContext(UserContext);
+    const {username}=useParams()
+    const principalUser=useContext(UserContext)
     function handleLogout() {
         localStorage.removeItem("token")
         navigate("/login")
@@ -49,7 +50,7 @@ function ProfileDashboard() {
                 <div>
                     <div>
                         <IoPersonOutline size={50} />
-                        <p>{user.username}</p>
+                        <p>{username}</p>
                     </div>
                     <div className={"dashboard-header"}>
                         <button onClick={handleProfileButtonClick}>Profile</button>
@@ -57,12 +58,14 @@ function ProfileDashboard() {
                         <button onClick={handleWatchedButtonClick}>Watched</button>
                         <button onClick={handleLikesButtonClick}>Likes</button>
                     </div>
-                    {profile && <RecentActivity/>}
-                    {watchlist && <Watchlist/>}
-                    {watched && <Watched/>}
-                    {likes && <Liked/>}
+                    {profile && <RecentActivity username={username}/>}
+                    {watchlist && <Watchlist username={username}/>}
+                    {watched && <Watched username={username}/>}
+                    {likes && <Liked username={username}/>}
                 </div>
-                <button onClick={handleLogout}>Logout</button>
+                {principalUser.username===username &&
+                    <button onClick={handleLogout}>Logout</button>
+                }
             </div>
         </>
     )

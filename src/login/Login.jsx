@@ -48,7 +48,7 @@ function Login() {
                 <Link to={"/register"}>SignUp</Link>
                 {error && <p>Invalid username or password</p>}
                 <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange}/>
-                <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
+                <input type="text" placeholder="Password" value={password} onChange={handlePasswordChange}/>
                 <button onClick={handleLogin}>Login</button>
             </div>
         </>
