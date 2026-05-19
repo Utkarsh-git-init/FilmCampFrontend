@@ -34,12 +34,14 @@ function ReviewSection({movie}){
             const safetyBuffer = 60;
 
             // If the bottom of the textarea is within or below the buffer zone
-            if (rect.bottom > viewportHeight - safetyBuffer) {
-                // Smoothly push the window scroll position down to keep a clear gap
-                window.scrollBy({
-                    top: rect.bottom - (viewportHeight - safetyBuffer),
-                    behavior: 'instant' // 'instant' prevents jarring UI lag during fast typing
-                });
+            if(text!==""){
+                if (rect.bottom > viewportHeight - safetyBuffer) {
+                    // Smoothly push the window scroll position down to keep a clear gap
+                    window.scrollBy({
+                        top: rect.bottom - (viewportHeight - safetyBuffer),
+                        behavior: 'smooth' // 'instant' prevents jarring UI lag during fast typing
+                    });
+                }
             }
         }
     },[text])

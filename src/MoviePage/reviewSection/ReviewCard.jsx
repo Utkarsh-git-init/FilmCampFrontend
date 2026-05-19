@@ -9,17 +9,38 @@ function ReviewCard({review}) {
     const [replyText, setReplyText] = useState("")
     const [replies,setReplies]=useState(review.replies)
     const user=useContext(UserContext)
-    const textarea=useRef(null);
+    const textareaRef=useRef(null);
     useEffect(() => {
-        if(replying&&textarea.current){
-            textarea.current.focus();
+        if(replying&&textareaRef.current){
+            textareaRef.current.focus();
         }
     }, [replying]);
+    useEffect(() => {
+        const textarea = textareaRef.current;
+        if(replyText){
+            textarea.style.height="auto";
+            textarea.style.height = textarea.scrollHeight + "px";
+
+            if(replyText!==""){
+                const rect=textarea.getBoundingClientRect();
+                const viewportHeight=window.innerHeight;
+                const safetyBuffer = 60
+                if(rect.bottom>viewportHeight-safetyBuffer){
+                    window.scrollBy({
+                        top:rect.bottom-(viewportHeight-safetyBuffer),
+                        behavior: "smooth"
+                    })
+                }
+            }
+        }
+    },[replyText])
     function handleDateTime(date){
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         return new Date(date).toLocaleDateString('en-US', options);
     }
     function handleReplySubmit(){
+        if(replyText==="")
+            return
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
         const reply={
             id:Date.now(),
@@ -73,7 +94,7 @@ function ReviewCard({review}) {
                     <div className={"reply-box"}>
                         <div className={"post-review-section"}>
                         <textarea placeholder={"Add a reply..."}
-                                  ref={textarea}
+                                  ref={textareaRef}
                                   value={replyText}
                                   onChange={(e)=>setReplyText(e.target.value)}
                         />
