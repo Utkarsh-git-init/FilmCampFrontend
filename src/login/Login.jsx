@@ -1,11 +1,12 @@
 import {useState} from "react";
 import './login.css'
-import { Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
+    const navigate=useNavigate();
     const handleUsernameChange = (e) => {setUsername(e.target.value)}
     const handlePasswordChange = (e) => {setPassword(e.target.value)}
     function handleLogin() {
@@ -30,10 +31,9 @@ function Login() {
         }).then(
             data => {
                 if(data){
-                    console.log(data)
                     const token="Bearer "+data;
                     localStorage.setItem("token", token)
-                    window.location.href = '/'
+                    navigate("/")
                 }
             }
         ).catch(err => {

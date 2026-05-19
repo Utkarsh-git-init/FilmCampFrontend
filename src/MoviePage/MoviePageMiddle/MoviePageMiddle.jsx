@@ -8,7 +8,6 @@ function MoviePageMiddle({movie}){
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
         fetch(baseUrl+"/movie/"+movie.id+"/credits",{
             headers:{
-                'Authorization':localStorage.getItem('token'),
                 'Accept': 'application/json'
             }
         })

@@ -11,7 +11,7 @@ import Watched from "./subPages/Watched.jsx";
 function ProfileDashboard() {
     const navigate=useNavigate();
     const {username}=useParams()
-    const principalUser=useContext(UserContext)
+    const {user:principalUser, authenticated:authenticated}=useContext(UserContext)
     function handleLogout() {
         localStorage.removeItem("token")
         navigate("/login")
@@ -63,7 +63,7 @@ function ProfileDashboard() {
                     {watched && <Watched username={username}/>}
                     {likes && <Liked username={username}/>}
                 </div>
-                {principalUser.username===username &&
+                {authenticated && principalUser.username===username &&
                     <button onClick={handleLogout}>Logout</button>
                 }
             </div>

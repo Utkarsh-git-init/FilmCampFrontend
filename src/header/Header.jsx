@@ -9,7 +9,7 @@ function Header() {
     const [searchButton, setSearchButton] = useState(true)
     const handleSearchBoxChange = (e) => {setSearchBox(e.target.value)}
     const navigate=useNavigate();
-    const user=useContext(UserContext)
+    const {user:user, authenticated:authenticated}=useContext(UserContext)
     function handleSearchButtonClick(e) {
         if(e.key === "Enter") {
             navigate("/search/"+searchBox)
@@ -43,8 +43,8 @@ function Header() {
                         </div>
                     </div>
                     <div className={"profile-icon-container"}>
-                        <Link to={"/user/"+user.username}>
-                            <IoPersonOutline size={30} />
+                        <Link to={authenticated ? "/user/" + user.username : "/login"}>
+                            <IoPersonOutline size={30}/>
                         </Link>
                     </div>
                 </div>

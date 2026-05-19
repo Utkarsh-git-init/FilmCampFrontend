@@ -2,15 +2,17 @@ import {useContext, useEffect, useRef, useState} from "react";
 import './reviewSection.css'
 import ReviewCard from "./ReviewCard.jsx";
 import {UserContext} from "../../layout/UserContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 function ReviewSection({movie}){
     const [reviews, setReviews] = useState([])
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
-    const user=useContext(UserContext);
+    const {user:user, authenticated:authenticated}=useContext(UserContext);
+    const navigate=useNavigate();
     useEffect(() => {
         fetch(baseUrl+"/movie/"+movie.id+"/reviews",{
             headers:{
-                'Authorization':localStorage.getItem('token')
+                'accept': 'application/json',
             }
         })
             .then(res => res.json())
@@ -64,6 +66,10 @@ function ReviewSection({movie}){
     function handleReviewPost(){
         if(text==="")
             return;
+        if(!authenticated) {
+            navigate("/login")
+            return;
+        }
         fetch(baseUrl+"/movie/add_review",{
             method:"POST",
             headers:{

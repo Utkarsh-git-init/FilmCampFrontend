@@ -7,15 +7,16 @@ function TrendingSection(){
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
     useEffect(()=>{
         fetch(baseUrl+"/movie/trending",{
-            headers:{
-                'Authorization':localStorage.getItem('token')
+            method: "GET",
+            headers: {
+                'Accept': 'application/json'
             }
         })
             .then(res => res.json())
             .then(data => {
                 setMovies(data)
             })
-    },[])
+    },[baseUrl])
     return(
         <>
             <div>

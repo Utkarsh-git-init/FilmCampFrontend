@@ -2,13 +2,14 @@ import {IoPersonOutline} from "react-icons/io5";
 import './reviewCard.css'
 import {useContext, useEffect, useRef, useState} from "react";
 import {UserContext} from "../../layout/UserContext.jsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function ReviewCard({review, movie}) {
     const [replying, setReplying] = useState(false)
     const [replyText, setReplyText] = useState("")
     const [replies,setReplies]=useState(review.replies)
-    const user=useContext(UserContext)
+    const {user:user, authenticated:authenticated}=useContext(UserContext)
+    const navigate=useNavigate();
     const textareaRef=useRef(null);
     useEffect(() => {
         if(replying&&textareaRef.current){
@@ -55,6 +56,10 @@ function ReviewCard({review, movie}) {
     function handleReplySubmit(){
         if(replyText==="")
             return
+        if(!authenticated) {
+            navigate("/login")
+            return;
+        }
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
         const reply={
             id:Date.now(),

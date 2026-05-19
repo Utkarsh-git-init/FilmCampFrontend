@@ -33,7 +33,6 @@ function FullCastAndCrew({cast, crew, closeOverlay}) {
                                         <p>{crewMember.known_for_department}</p>
                                         <p>{crewMember.job}</p>
                                     </div>
-
                                 </div>
                             )}
                         </div>

@@ -1,6 +1,7 @@
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import './searchPage.css'
+import noImageAvailable from "/src/assets/no-image-available.jpg";
 
 function SearchPage() {
     const {query}=useParams();
@@ -13,8 +14,7 @@ function SearchPage() {
         fetch(baseUrl+"/movie/search/"+query+"/"+page, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("token")
+                'accept': 'application/json'
             }
         }).then(res => res.json())
             .then(data=>{
@@ -55,7 +55,7 @@ function SearchPage() {
                         movies.map(movie =>
                             <div key={movie.id} className={"movieCardInSearchPage"}>
                                 <Link to={"/movie/"+movie.id} className={"posterLink"}>
-                                    <img src={movie.poster_path}/>
+                                    <img src={movie.poster_path?movie.poster_path:noImageAvailable} alt={movie.title}/>
                                 </Link>
                                 <div className={"details"}>
                                     <Link to={"/movie/"+movie.id}>

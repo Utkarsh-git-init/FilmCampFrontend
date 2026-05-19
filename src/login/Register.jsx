@@ -1,11 +1,12 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function Register() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const navigate=useNavigate();
     const handleUsernameChange = (e) => {setUsername(e.target.value)}
     const handlePasswordChange = (e) => {setPassword(e.target.value)}
     function handleRegister() {
@@ -32,7 +33,7 @@ function Register() {
                 })
             }).then(res => {
                     if (res.status === 200) {
-                        window.location.href = '/login'
+                        navigate("/login")
                     } else if (res.status === 409) {
                         setError(true);
                         setErrorMessage("User with this username already exists")

@@ -1,17 +1,23 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {
     IoHeartOutline, IoHeart,
     IoEyeOutline, IoEye,
     IoBookmarkOutline, IoBookmark,
 } from "react-icons/io5";
 import './userMovieInteraction.css'
+import {UserContext} from "../../layout/UserContext.jsx";
+import {useNavigate} from "react-router-dom";
 
 function UserMovieInteraction({movie}) {
     const [Watched, setWatched] = useState(false)
     const [liked, setLiked] = useState(false)
     const [inWatchlist, setInWatchlist] = useState(false)
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
+    const {authenticated:authenticated} = useContext(UserContext)
+    const navigate=useNavigate();
     useEffect(() => {
+        if(!authenticated)
+            return;
         fetch(baseUrl+"/interactions/movie/"+movie.id,{
             headers:{
                 'Authorization':localStorage.getItem('token'),
@@ -27,6 +33,10 @@ function UserMovieInteraction({movie}) {
     }, [movie.id]);
 
     function handleWatched(){
+        if(!authenticated) {
+            navigate("/login")
+            return
+        }
         setWatched(!Watched)
         fetch(baseUrl+"/interactions/movie/update",{
             method:"POST",
@@ -48,6 +58,10 @@ function UserMovieInteraction({movie}) {
         })
     }
     function handleLiked(){
+        if(!authenticated) {
+            navigate("/login")
+            return
+        }
         setLiked(!liked)
         fetch(baseUrl+"/interactions/movie/update",{
             method:"POST",
@@ -69,6 +83,10 @@ function UserMovieInteraction({movie}) {
         })
     }
     function handleInWatchlist(){
+        if(!authenticated) {
+            navigate("/login")
+            return
+        }
         setInWatchlist(!inWatchlist)
         fetch(baseUrl+"/interactions/movie/update",{
             method:"POST",

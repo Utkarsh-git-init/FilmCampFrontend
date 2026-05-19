@@ -6,10 +6,12 @@ function PopularOnFilmCamp(){
     const [movies, setMovies] = useState([]);
     useEffect(() => {
         fetch(baseUrl+"/movie/popular_on_film_camp",{
-            headers:{
-                'Authorization':localStorage.getItem('token')
+            method: "GET",
+            headers: {
+                'Accept': 'application/json'
             }
-        }).then(data => data.json())
+        })
+            .then(data => data.json())
             .then(data => {
                 setMovies(data)
             })

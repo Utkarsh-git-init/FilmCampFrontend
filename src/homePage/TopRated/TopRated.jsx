@@ -7,8 +7,9 @@ function TopRated(){
     useEffect(() => {
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
         fetch(baseUrl+"/movie/top_rated",{
-            headers:{
-                'Authorization':localStorage.getItem('token')
+            method: "GET",
+            headers: {
+                'Accept': 'application/json'
             }
         })
             .then(res => res.json())

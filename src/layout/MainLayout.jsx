@@ -1,5 +1,5 @@
 import Header from "../header/Header.jsx";
-import {data, Outlet, useNavigate} from "react-router-dom";
+import {Outlet} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {UserContext} from "./UserContext.jsx";
 
@@ -7,7 +7,6 @@ import {UserContext} from "./UserContext.jsx";
 const MainLayout = () => {
     const [authenticated, setAuthenticated] = useState(false)
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
-    const navigate=useNavigate();
     const [user, setUser] = useState({});
     useEffect(() => {
         fetch(`${baseUrl}/user/isauthenticated`,
@@ -25,20 +24,12 @@ const MainLayout = () => {
                 } else {
                     setAuthenticated(false)
                     console.log("User is not authenticated")
-                    navigate("/login")
                 }
             })
-    },[])
-    if(!authenticated){
-        return (
-            <div>
-                <p>Loading...</p>
-            </div>
-        )
-    }
+    },[baseUrl])
     return(
         <>
-            <UserContext value={user}>
+            <UserContext value={{user, authenticated}}>
                 <Header/>
                 <Outlet/>
             </UserContext>

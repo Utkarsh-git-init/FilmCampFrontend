@@ -13,8 +13,7 @@ function MoviePage(){
         fetch(baseUrl+"/movie/" + id, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json",
-                "Authorization": localStorage.getItem("token")
+                'Accept': 'application/json'
             }
         }).then(res => res.json())
             .then(setMovie)
