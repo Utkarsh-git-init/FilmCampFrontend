@@ -15,22 +15,36 @@ function ReviewCard({review}) {
             textareaRef.current.focus();
         }
     }, [replying]);
+    const prevHeightRef = useRef(0);
     useEffect(() => {
         const textarea = textareaRef.current;
         if(replyText){
+            const oldHeight = textarea.offsetHeight;
             textarea.style.height="auto";
             textarea.style.height = textarea.scrollHeight + "px";
-
+            const newHeight = textarea.scrollHeight;
             if(replyText!==""){
                 const rect=textarea.getBoundingClientRect();
                 const viewportHeight=window.innerHeight;
                 const safetyBuffer = 60
+                if (newHeight < oldHeight && prevHeightRef.current > 0) {
+                    const heightDifference = oldHeight - newHeight;
+
+                    // Scroll down by the exact amount it shrank to keep the cursor
+                    // anchored perfectly in place instead of jumping to the top
+                    window.scrollBy({
+                        top: -heightDifference,
+                        behavior: 'instant'
+                    });
+                }
+
                 if(rect.bottom>viewportHeight-safetyBuffer){
                     window.scrollBy({
                         top:rect.bottom-(viewportHeight-safetyBuffer),
                         behavior: "instant"
                     })
                 }
+                prevHeightRef.current = newHeight;
             }
         }
     },[replyText])

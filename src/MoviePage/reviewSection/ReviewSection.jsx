@@ -20,31 +20,46 @@ function ReviewSection({movie}){
     },[baseUrl, movie.id])
     const [text, setText] = useState("")
     const textareaRef = useRef(null);
+    const prevHeightRef = useRef(0);
     useEffect(() => {
-        const textarea=textareaRef.current;
-        if(textarea){
+        const textarea = textareaRef.current;
+        if (textarea) {
+            // 1. Capture the height before resetting it
+            const oldHeight = textarea.offsetHeight;
+
             textarea.style.height = "auto";
-            textarea.style.height = textarea.scrollHeight + "px";
-            // --- FIX CARET JUMPING AT THE BOTTOM ---
-            // Get the bounding box of the textarea relative to the viewport
-            const rect = textarea.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
+            const newHeight = textarea.scrollHeight;
+            textarea.style.height = newHeight + "px";
 
-            // Define a buffer zone (e.g., 60px from the bottom of the screen)
-            const safetyBuffer = 60;
+            if (text !== "") {
+                const rect = textarea.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const safetyBuffer = 60;
 
-            // If the bottom of the textarea is within or below the buffer zone
-            if(text!==""){
-                if (rect.bottom > viewportHeight - safetyBuffer) {
-                    // Smoothly push the window scroll position down to keep a clear gap
+                // 2. DETECT SHRINKING: If the new height is smaller than the old height
+                if (newHeight < oldHeight && prevHeightRef.current > 0) {
+                    const heightDifference = oldHeight - newHeight;
+
+                    // Scroll down by the exact amount it shrank to keep the cursor
+                    // anchored perfectly in place instead of jumping to the top
+                    window.scrollBy({
+                        top: -heightDifference,
+                        behavior: 'instant'
+                    });
+                }
+                // 3. DETECT GROWING: Falling into the bottom safety buffer
+                else if (rect.bottom > viewportHeight - safetyBuffer) {
                     window.scrollBy({
                         top: rect.bottom - (viewportHeight - safetyBuffer),
-                        behavior: 'instant' // 'instant' prevents jarring UI lag during fast typing
+                        behavior: 'instant'
                     });
                 }
             }
+
+            // Save the current height for the next keystroke/render
+            prevHeightRef.current = newHeight;
         }
-    },[text])
+    }, [text]);
 
     function handleReviewPost(){
         if(text==="")
