@@ -28,7 +28,7 @@ function ReviewCard({review}) {
                 if(rect.bottom>viewportHeight-safetyBuffer){
                     window.scrollBy({
                         top:rect.bottom-(viewportHeight-safetyBuffer),
-                        behavior: "smooth"
+                        behavior: "instant"
                     })
                 }
             }

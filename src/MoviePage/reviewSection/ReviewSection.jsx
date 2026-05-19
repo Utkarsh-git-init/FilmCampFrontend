@@ -39,7 +39,7 @@ function ReviewSection({movie}){
                     // Smoothly push the window scroll position down to keep a clear gap
                     window.scrollBy({
                         top: rect.bottom - (viewportHeight - safetyBuffer),
-                        behavior: 'smooth' // 'instant' prevents jarring UI lag during fast typing
+                        behavior: 'instant' // 'instant' prevents jarring UI lag during fast typing
                     });
                 }
             }
