@@ -71,7 +71,11 @@ function ReviewSection({movie}){
                 'Authorization':localStorage.getItem('token')
             },
             body:JSON.stringify({
-                movie_id:movie.id,
+                movie:{
+                    id:movie.id,
+                    title:movie.title,
+                    poster_path:movie.poster_path,
+                },
                 content:text
             })
         })
@@ -107,7 +111,7 @@ function ReviewSection({movie}){
             <div className={"reviews-display-section"}>
                 {reviews.map(review =>
                     <div key={review.id}>
-                        <ReviewCard review={review}/>
+                        <ReviewCard review={review} movie={movie}/>
                         <hr/>
                     </div>
                 )}

@@ -4,7 +4,7 @@ import {useContext, useEffect, useRef, useState} from "react";
 import {UserContext} from "../../layout/UserContext.jsx";
 import {Link} from "react-router-dom";
 
-function ReviewCard({review}) {
+function ReviewCard({review, movie}) {
     const [replying, setReplying] = useState(false)
     const [replyText, setReplyText] = useState("")
     const [replies,setReplies]=useState(review.replies)
@@ -73,7 +73,11 @@ function ReviewCard({review}) {
                 'Authorization':localStorage.getItem('token')
             },
             body:JSON.stringify({
-                movie_id:review.movie_id,
+                movie:{
+                    id:movie.id,
+                    title:movie.title,
+                    poster_path:movie.poster_path,
+                },
                 parent_id:review.id,
                 content:replyText
             })
