@@ -12,8 +12,12 @@ function HomePage() {
             <div className={"homepageContainer"}>
                 <div>
                     <div className={"homePageHeader"}>
-                        <button onClick={()=>setIsFeedOpen(false)}>Home</button>
-                        <button onClick={()=>setIsFeedOpen(true)}>Feed</button>
+                        <button className={!isFeedOpen ? "active" : ""}
+                                onClick={() => setIsFeedOpen(false)}>Home
+                        </button>
+                        <button className={isFeedOpen ? "active" : ""}
+                                onClick={() => setIsFeedOpen(true)}>Feed
+                        </button>
                     </div>
                     {isFeedOpen?
                         <Feed/>

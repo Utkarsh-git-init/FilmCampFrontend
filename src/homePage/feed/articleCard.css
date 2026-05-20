@@ -5,13 +5,33 @@
     flex-direction: row;
     gap: 1em;
 }
-.articleCard img{
+.articleCardImage{
     width: 50%;
+}
+.articleCardImage img{
+    width: 100%;
+    border-radius: 10px;
 }
 .articleCardContent{
     display: flex;
     flex-direction: column;
     text-align: left;
-    gap: 1em;
     width: 50%;
+}
+@media (max-width: 1024px) {
+    .articleCard{
+        flex-direction: column;
+    }
+    .articleCardImage{
+        width: 100%;
+    }
+    .articleCardContent{
+        width: 100%;
+    }
+    .articleCardContent h2{
+        font-size: 1rem;
+    }
+    .articleCardContent p{
+        font-size: 0.8rem;
+    }
 }

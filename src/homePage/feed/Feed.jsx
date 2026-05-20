@@ -6,7 +6,7 @@ function Feed() {
     const [colliderFeed, setColliderFeed] = useState([]);
     useEffect(() => {
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
-        fetch(baseUrl+"/feed/collider",{
+        fetch(baseUrl+"/feed/slashfilm",{
             method: "GET",
             headers: {
                 'Accept': 'application/json'
