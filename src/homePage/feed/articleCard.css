@@ -1,0 +1,17 @@
+.articleCard{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+.articleCard img{
+    width: 50%;
+}
+.articleCardContent{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 1em;
+    width: 50%;
+}

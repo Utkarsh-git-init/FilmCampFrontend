@@ -1,6 +1,18 @@
 .homepageContainer{
+    margin-left: 0.5rem ;
+    margin-right: 0.5rem;
     display: flex;
     flex-direction: column;
-    height: 90vh;
     justify-content: space-between;
+}
+.homePageHeader{
+    display: flex;
+    flex-direction: row;
+}
+.homePageHeader button{
+    width: 50%;
+    border: none;
+}
+.homePageHeader button:hover{
+    color: deepskyblue;
 }
