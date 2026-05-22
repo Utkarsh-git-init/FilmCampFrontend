@@ -24,21 +24,28 @@ function HomePageFeed() {
                     <label>Articles</label>
                     <Link to={"/articles"}>View All</Link>
                 </div>
-                <hr/>
-                <div className={"homePageFeedArticles"}>
-                    {articles.slice(0,3).map(article =>
-                        <div className={"homePageFeedArticle"}>
-                            <a href={article.link} target={"_blank"} rel={"noreferrer"}>
-                                <img src={article.imageUrl} alt={article.title}/>
-                            </a>
-                            <div className={"homePageFeedArticleContent"}>
-                                <label>{article.title}</label>
-                                <p>{article.description}</p>
-                            </div>
+
+                {
+                    articles.length ===0?
+                        <div className="homePageFeedFiller">
+
                         </div>
-                    )
-                    }
-                </div>
+                        :
+                        <div className={"homePageFeedArticles"}>
+                            {articles.slice(0,3).map(article =>
+                                <div className={"homePageFeedArticle"}>
+                                    <a href={article.link} target={"_blank"} rel={"noreferrer"}>
+                                        <img src={article.imageUrl} alt={article.title}/>
+                                    </a>
+                                    <div className={"homePageFeedArticleContent"}>
+                                        <label>{article.title}</label>
+                                        <p>{article.description}</p>
+                                    </div>
+                                </div>
+                            )
+                            }
+                        </div>
+                }
             </div>
         </>
 

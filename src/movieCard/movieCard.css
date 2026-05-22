@@ -26,7 +26,7 @@
     opacity: 1; /* Fade in smoothly */
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
     .movieCard{
         width: 75%;
     }
