@@ -9,7 +9,7 @@ function Watched({username}){
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
         fetch(baseUrl+"/u/"+username+"/watched",{
             headers:{
-                'Authorization':localStorage.getItem('token')
+                "Accept":"application/json",
             }
         })
             .then(res => res.json())
