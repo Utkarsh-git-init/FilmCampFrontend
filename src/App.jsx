@@ -8,6 +8,7 @@ import MoviePage from "./MoviePage/MoviePage.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import SearchPage from "./searchPage/SearchPage.jsx";
 import ProfileDashboard from "./profileDashboard/ProfileDashboard.jsx";
+import Articles from "./homePage/feed/Articles.jsx";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path='/movie/:id' element={<MoviePage/>}/>
                     <Route path='/search/:query' element={<SearchPage/>}/>
                     <Route path="/user/:username" element={<ProfileDashboard/>}/>
+                    <Route path="/articles" element={<Articles/>}/>
                 </Route>
             </Routes>
         </>

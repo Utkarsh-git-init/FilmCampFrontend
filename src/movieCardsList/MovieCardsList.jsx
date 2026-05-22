@@ -33,6 +33,7 @@ function MovieCardsList({sectionName,movies}) {
                         <button onClick={handleNextButton}>{">"}</button>
                     </div>
                 </div>
+                <hr/>
                 <div className={"movie-cards-list-container"}>
                     {movies.length === 0 ?
                         Array(4).fill(0).map((_, index) => <MovieCard key={index}/>)

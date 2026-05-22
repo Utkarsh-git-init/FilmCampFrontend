@@ -2,15 +2,15 @@
     display:grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5em;
-    margin: 1em;
+    margin: 0.5rem;
+    padding-top: 0.5rem;
 }
 
 .movie-cards-list-header{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+    padding-left: 0.5rem;
 }
 .prev-next-buttons{
     display: flex;
@@ -19,7 +19,7 @@
     justify-content: space-between;
 }
 .prev-next-buttons button{
-    width: 5em;
+    width: 5rem;
     height: 100%;
     border:none;
     background: none;

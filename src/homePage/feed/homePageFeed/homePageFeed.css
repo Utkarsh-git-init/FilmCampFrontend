@@ -1,0 +1,64 @@
+.homePageFeed {
+    gap: 1rem;
+}
+.homePageFeedHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.homePageFeedHeader a{
+    text-decoration: none;
+}
+.homePageFeedHeader a:hover{
+    color: deepskyblue;
+    cursor: pointer;
+}
+.homePageFeedArticles{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+.homePageFeedArticle{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.homePageFeedArticle a{
+    width: 33%;
+}
+.homePageFeedArticle img{
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.homePageFeedArticleContent{
+    display: flex;
+    width: 67%;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+}
+.homePageFeedArticleContent label{
+    font-size: 1.2rem;
+    color: white;
+}
+.homePageFeedArticleContent p{
+    font-size: 0.9rem;
+}
+@media (max-width: 768px) {
+    .homePageFeedArticleContent p{
+        display: none;
+    }
+    .homePageFeedArticleContent label{
+        font-size: 0.8rem;
+    }
+    .homePageFeedArticle{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

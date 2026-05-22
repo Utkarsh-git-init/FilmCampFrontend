@@ -2,33 +2,17 @@ import TrendingSection from "./trending/TrendingSection.jsx";
 import './homePage.css'
 import TopRated from "./TopRated/TopRated.jsx";
 import PopularOnFilmCamp from "./popularOnFilmCamp/PopularOnFilmCamp.jsx";
-import {useState} from "react";
-import Feed from "./feed/Feed.jsx";
+import HomePageFeed from "./feed/homePageFeed/HomePageFeed.jsx";
 
 function HomePage() {
-    const [isFeedOpen, setIsFeedOpen] = useState(false)
     return(
         <>
             <div className={"homepageContainer"}>
                 <div>
-                    <div className={"homePageHeader"}>
-                        <button className={!isFeedOpen ? "active" : ""}
-                                onClick={() => setIsFeedOpen(false)}>Home
-                        </button>
-                        <button className={isFeedOpen ? "active" : ""}
-                                onClick={() => setIsFeedOpen(true)}>Feed
-                        </button>
-                    </div>
-                    {isFeedOpen?
-                        <Feed/>
-                        :
-                        <>
-                            <PopularOnFilmCamp/>
-                            <TrendingSection />
-                            <TopRated/>
-                        </>
-
-                    }
+                    <PopularOnFilmCamp/>
+                    <HomePageFeed/>
+                    <TrendingSection />
+                    <TopRated/>
                 </div>
             </div>
         </>

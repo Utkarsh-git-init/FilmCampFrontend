@@ -1,9 +1,9 @@
 import {useEffect, useState} from "react";
 import ArticleCard from "./ArticleCard.jsx";
-import './feed.css'
+import './articles.css'
 
-function Feed() {
-    const [colliderFeed, setColliderFeed] = useState([]);
+function Articles() {
+    const [slashFilmFeed, setSlashFilmFeed] = useState([]);
     useEffect(() => {
         const baseUrl=import.meta.env.VITE_API_BASE_URL;
         fetch(baseUrl+"/feed/slashfilm",{
@@ -14,18 +14,18 @@ function Feed() {
         })
             .then(res => res.json())
             .then(data => {
-                setColliderFeed(data)
+                setSlashFilmFeed(data)
             })
     }, []);
-    if(colliderFeed.length === 0) return (
+    if(slashFilmFeed.length === 0) return (
         <p>Loading...</p>
     )
     return (
         <div className={"feed"}>
             {
-                colliderFeed.map(article =><ArticleCard article={article}/>)
+                slashFilmFeed.map(article =><ArticleCard article={article}/>)
             }
         </div>
     )
 }
-export default Feed;
+export default Articles;
