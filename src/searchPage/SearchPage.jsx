@@ -8,6 +8,7 @@ function SearchPage() {
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
     const [movies, setMovies] = useState([]);
     const [response, setResponse] = useState(null);
+    const [error,setError] = useState(false);
     const [page, setPage] = useState(1);
     const [pageInput, setPageInput] = useState("1");
     useEffect(() => {
@@ -16,7 +17,12 @@ function SearchPage() {
             headers: {
                 'accept': 'application/json'
             }
-        }).then(res => res.json())
+        }).then(res => {
+            if(res.status === 200) {
+                return res.json();
+            }else
+                setError(true);
+        })
             .then(data=>{
                 setResponse(data);
                 setMovies(data.results);
@@ -65,7 +71,14 @@ function SearchPage() {
                                     <p>{movie.overview}</p>
                                 </div>
                             </div>)
-                        :<p>Loading</p>
+                        :
+                        <div className={"loader-container"}>
+                            {error?
+                                <div>Connection timed out. [Reload Page]</div>
+                                :
+                                <div className="loader"></div>
+                            }
+                        </div>
                 }
                 <div>
                     {
