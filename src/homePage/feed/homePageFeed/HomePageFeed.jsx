@@ -27,9 +27,10 @@ function HomePageFeed() {
 
                 {
                     articles.length ===0?
-                        <div className="homePageFeedFiller">
-
+                        <div className={"homePageFeedLoaderContainer"}>
+                            <div className="loader"></div>
                         </div>
+
                         :
                         <div className={"homePageFeedArticles"}>
                             {articles.slice(0,3).map(article =>

@@ -4,10 +4,12 @@ import MoviePageUpper from "./MoviePageUpper.jsx";
 import MoviePageMiddle from "./MoviePageMiddle/MoviePageMiddle.jsx";
 import UserMovieInteraction from "./UserMovieInteraction/UserMovieInteraction.jsx";
 import ReviewSection from "./reviewSection/ReviewSection.jsx";
+import './moviePage.css'
 
 function MoviePage(){
     const {id}=useParams();
     const [movie,setMovie] = useState(null);
+    const [error, setError] = useState(false);
     const baseUrl=import.meta.env.VITE_API_BASE_URL;
     useEffect(()=>{
         fetch(baseUrl+"/movie/" + id, {
@@ -15,10 +17,25 @@ function MoviePage(){
             headers: {
                 'Accept': 'application/json'
             }
-        }).then(res => res.json())
+        }).then(res => {
+            if(res.status === 200)
+                return res.json();
+            setError(true)
+        })
             .then(setMovie)
     },[]);
-    if(!movie) return <p>Loading...</p>
+    if(!movie)
+        return(
+            <div className={"loader-container"}>
+                {error?
+                    <div>Connection timed out. [Reload Page]</div>
+                    :
+                    <div className="loader"></div>
+                }
+            </div>
+
+        )
+
     return (
         <>
             <div>

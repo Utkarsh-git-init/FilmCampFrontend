@@ -6,10 +6,12 @@ function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
+    const [loading, setLoading] = useState(false);
     const navigate=useNavigate();
     const handleUsernameChange = (e) => {setUsername(e.target.value)}
     const handlePasswordChange = (e) => {setPassword(e.target.value)}
     function handleLogin() {
+        setLoading(true);
         const baseUrl=import.meta.env.VITE_API_BASE_URL
         fetch(`${baseUrl}/user/login`,{
             method: 'POST',
@@ -27,6 +29,7 @@ function Login() {
                 console.log("Login failed")
                 setError(true)
             }
+            setLoading(false);
             throw new Error("Login failed with status code: "+res.status)
         }).then(
             data => {
@@ -49,6 +52,7 @@ function Login() {
                 {error && <p>Invalid username or password</p>}
                 <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange}/>
                 <input type="text" placeholder="Password" value={password} onChange={handlePasswordChange}/>
+                {loading && <div className="LoginLoader"></div>}
                 <button onClick={handleLogin}>Login</button>
             </div>
         </>

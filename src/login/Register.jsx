@@ -6,10 +6,13 @@ function Register() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const [loading, setLoading] = useState(false);
     const navigate=useNavigate();
     const handleUsernameChange = (e) => {setUsername(e.target.value)}
     const handlePasswordChange = (e) => {setPassword(e.target.value)}
     function handleRegister() {
+        username.trim();
+        password.trim();
         if(username.length<4){
             setError(true);
             setErrorMessage("Username cannot be less than 4 characters")
@@ -20,6 +23,7 @@ function Register() {
             setError(true)
             setErrorMessage("Username and password cannot contain special characters except underscore and @")
         }else{
+            setLoading(true);
             setError(false);
             const baseUrl = import.meta.env.VITE_API_BASE_URL
             fetch(`${baseUrl}/user/register`, {
@@ -37,9 +41,11 @@ function Register() {
                     } else if (res.status === 409) {
                         setError(true);
                         setErrorMessage("User with this username already exists")
+                        setLoading(false);
                     } else {
                         setError(true);
                         setErrorMessage("Register failed. Please try again")
+                        setLoading(false);
                     }
                 }
             )
@@ -54,9 +60,11 @@ function Register() {
             <div className={"loginContainer"}>
                 <input type="text" placeholder="Username" value={username} onChange={handleUsernameChange}/>
                 <input type="text" placeholder="Password" value={password} onChange={handlePasswordChange}/>
+                {loading && <div className="LoginLoader"></div>}
                 <button onClick={handleRegister}>Register</button>
             </div>
         </>
     )
 }
+
 export default Register;
