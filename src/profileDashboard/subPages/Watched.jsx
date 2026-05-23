@@ -19,7 +19,9 @@ function Watched({username}){
     }, [username]);
     if (watched === null)
         return (
-            <>Loading...</>
+            <div className={"loader-container"}>
+                <div className="loader"></div>
+            </div>
         )
     else if (watched.length === 0)
         return (

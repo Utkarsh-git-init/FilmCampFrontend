@@ -19,7 +19,9 @@ function Watchlist({username}) {
     }, [username]);
     if (watchlist === null)
         return (
-            <>Loading...</>
+            <div className={"loader-container"}>
+                <div className="loader"></div>
+            </div>
         )
     else if (watchlist.length === 0)
         return (

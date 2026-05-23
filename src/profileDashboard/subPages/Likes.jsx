@@ -19,7 +19,9 @@ function Liked({username}){
     }, [username]);
     if (liked === null)
         return (
-            <>Loading...</>
+            <div className={"loader-container"}>
+                <div className="loader"></div>
+            </div>
         )
     else if (liked.length === 0)
         return (
