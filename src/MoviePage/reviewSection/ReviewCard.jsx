@@ -130,7 +130,7 @@ function ReviewCard({review, movie}) {
                 }
                 <div className={"replies-container"}>
                     {replies.map(reply =>
-                        <ReviewCard review={reply} key={reply.id}/>
+                        <ReviewCard review={reply} key={reply.id} movie={movie}/>
                     )}
                 </div>
             </div>
