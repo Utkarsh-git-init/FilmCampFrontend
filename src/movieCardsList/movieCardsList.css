@@ -24,6 +24,7 @@
     border:none;
     background: none;
     font-size: 20px;
+    color: var(--text-h);
 }
 .prev-next-buttons button:hover{
     cursor: pointer;
@@ -41,7 +42,7 @@
 .pageIndicator{
     width: 5%;
     height: 20%;
-    border: 2px solid white;
+    border: 2px solid var(--text-h);
     border-radius: 50%;
 }
 .pageIndicator.active{
